@@ -22,15 +22,21 @@ const post = (path, payload) =>
     req.end();
   });
 
-const emojiOptions = ["😡", "😠", "😾", "🤬", "👿", "😘", "🥰"];
-const w = "W".repeat(Math.floor(Math.random() * 4) + 1);
+const emojiOptions = ["🥰", "👩‍⚕️", "😷"];
 const emojiCount = Math.floor(Math.random() * 3);
 const emojiIndex = Math.floor(Math.random() * emojiOptions.length);
 const emoji = emojiOptions[emojiIndex].repeat(emojiCount);
-const exclamationMark = "!".repeat(Math.floor(Math.random() * 4));
-const text = `B2${w}${exclamationMark} ${emoji}`;
 
-console.log(text);
+const wfhOptions = [
+  "Work from home today!",
+  "WFH and chill?",
+  "Stay safe! Work from home!",
+  "Work from home! Wash your hands! Avoid touching your face!"
+];
+const wfhIndex = Math.floor(Math.random() * wfhOptions.length);
+const wfh = wfhOptions[wfhIndex];
+
+const text = `${wfh} ${emoji}`;
 
 module.exports.b2w = async (event) => {
   await post(process.env.SLACK_PATH, {
