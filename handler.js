@@ -22,11 +22,17 @@ const post = (path, payload) =>
     req.end();
   });
 
-const initialStartDate = new Date("2020-03-11");
-const now = new Date();
-const differenceInTime = now.getTime() - initialStartDate.getTime();
-const differenceInDays = Math.ceil(differenceInTime / (1000 * 3600 * 24));
-const otherDifferenceInDays = differenceInDays - 1;
+const calculateWfhDays = (initialStartDate, numberOfDaysInFirstWeek) => {
+  const now = new Date();
+  const differenceInTime = now.getTime() - initialStartDate.getTime();
+  const differenceInDays = Math.ceil(differenceInTime / (1000 * 3600 * 24));
+  const weekends = Math.ceil((differenceInDays - numberOfDaysInFirstWeek) / 7);
+  const wfhDays = differenceInDays - weekends * 2;
+  return wfhDays;
+};
+
+const differenceInDays = calculateWfhDays(new Date("2020-03-11"), 5);
+const otherDifferenceInDays = calculateWfhDays(new Date("2020-03-12"), 4);
 
 const text = "Daily WFH report";
 const blocks = [
