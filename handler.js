@@ -22,25 +22,48 @@ const post = (path, payload) =>
     req.end();
   });
 
-const emojiOptions = ["🥰", "👩‍⚕️", "😷"];
-const emojiCount = Math.floor(Math.random() * 3);
-const emojiIndex = Math.floor(Math.random() * emojiOptions.length);
-const emoji = emojiOptions[emojiIndex].repeat(emojiCount);
+const initialStartDate = new Date("2020-03-11");
+const now = new Date();
+const differenceInTime = now.getTime() - initialStartDate.getTime();
+const differenceInDays = Math.ceil(differenceInTime / (1000 * 3600 * 24));
+const otherDifferenceInDays = differenceInDays - 1;
 
-const wfhOptions = [
-  "Work from home today!",
-  "WFH and chill?",
-  "Stay safe! Work from home!",
-  "Work from home! Wash your hands! Avoid touching your face!"
+const text = "Daily WFH report";
+const blocks = [
+  {
+    type: "section",
+    text: {
+      type: "mrkdwn",
+      text: "Daily WFH report:"
+    }
+  },
+  {
+    type: "section",
+    fields: [
+      {
+        type: "mrkdwn",
+        text: `*𝗗aniel*\nDay ${otherDifferenceInDays}`
+      },
+      {
+        type: "mrkdwn",
+        text: `*𝗝ohan*\nDay ${differenceInDays}`
+      },
+      {
+        type: "mrkdwn",
+        text: `*𝗝onathan*\nDay ${otherDifferenceInDays}`
+      },
+      {
+        type: "mrkdwn",
+        text: `*𝗩init*\nDay ${differenceInDays}`
+      }
+    ]
+  }
 ];
-const wfhIndex = Math.floor(Math.random() * wfhOptions.length);
-const wfh = wfhOptions[wfhIndex];
-
-const text = `${wfh} ${emoji}`;
 
 module.exports.b2w = async (event) => {
   await post(process.env.SLACK_PATH, {
-    text
+    text,
+    blocks
   });
 
   return {
