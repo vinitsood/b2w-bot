@@ -31,8 +31,8 @@ const calculateWfhDays = (initialStartDate, numberOfDaysInFirstWeek) => {
   return wfhDays;
 };
 
-const differenceInDays = calculateWfhDays(new Date("2020-03-11"), 5);
-const otherDifferenceInDays = calculateWfhDays(new Date("2020-03-12"), 4);
+const wfhDays = calculateWfhDays(new Date("2020-03-11"), 5);
+const otherWfhDays = calculateWfhDays(new Date("2020-03-12"), 4);
 
 const text = "Daily WFH report";
 const blocks = [
@@ -40,7 +40,7 @@ const blocks = [
     type: "section",
     text: {
       type: "mrkdwn",
-      text: "Daily WFH report:"
+      text
     }
   },
   {
@@ -48,19 +48,19 @@ const blocks = [
     fields: [
       {
         type: "mrkdwn",
-        text: `*𝗗aniel*\nDay ${otherDifferenceInDays}`
+        text: `*𝗗aniel*\nDay ${otherWfhDays}`
       },
       {
         type: "mrkdwn",
-        text: `*𝗝ohan*\nDay ${differenceInDays}`
+        text: `*𝗝ohan*\nDay ${wfhDays}`
       },
       {
         type: "mrkdwn",
-        text: `*𝗝onathan*\nDay ${otherDifferenceInDays}`
+        text: `*𝗝onathan*\nDay ${otherWfhDays}`
       },
       {
         type: "mrkdwn",
-        text: `*𝗩init*\nDay ${differenceInDays}`
+        text: `*𝗩init*\nDay ${wfhDays}`
       }
     ]
   }
