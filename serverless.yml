@@ -9,5 +9,3 @@ provider:
 functions:
   b2w:
     handler: handler.b2w
-    events:
-      - schedule: cron(30 6 ? * 2-6 *)
